@@ -23,17 +23,19 @@
       </div>
   </div>
   <div class="form-group">
-    <label>Salary</label>
+    <label>Salary</label><br>
     <div class="input-group-prepend">
       <div class="input-group-text">
         <i class="fa fa-usd"></i>
       </div>
-      <input class="form-control" name="salary" #salary="ngModel" [(ngModel)]="employeeService.selectedEmployee.salary" placeholder="Salary">
+      <input required class="form-control" name="salary" #salary="ngModel" [(ngModel)]="employeeService.selectedEmployee.salary" placeholder="Salary" (change)="log(salary)">
       <div class="input-group-append">
         <span class="input-group-text">.00</span>
       </div>
     </div>
-    
+    <div class="alert alert-danger" *ngIf="salary.touched && !salary.valid">
+      <div *ngIf="salary.errors.required">Salary is required.</div>
+    </div>
   </div>
   <div class="form-group">
     <button type="submit" class="btn btn-default">
